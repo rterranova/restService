@@ -1,0 +1,34 @@
+service: restService # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  memorySize: 512
+
+package:
+  include:
+    - node_modules/square-connect/**
+    - node_modules/superagent/**
+  excludeDevDependencies: true
+
+functions:
+  charge:
+    environment:    
+      ACCESS_TOKEN: EAAAEMkT7fBHDyUiOqFVIiVghrPhW3qDUsNdy2T-Z_XwT2ADSAcrWj7BT_wVFvIa      
+      LOCATION_ID: CBASEF7tx0Zm5KcE_WHf6u4OwCIgAQ
+    handler: handler.charge
+    events:
+      - http:
+          path: /charge
+          method: post  
+          
+  chargeTest:
+    environment:    
+      ACCESS_TOKEN: EAAAEMkT7fBHDyUiOqFVIiVghrPhW3qDUsNdy2T-Z_XwT2ADSAcrWj7BT_wVFvIa      
+      LOCATION_ID: CBASEF7tx0Zm5KcE_WHf6u4OwCIgAQ
+    handler: handler.chargeTest
+    events:
+      - http:
+          path: /chargeTest
+          method: post 
