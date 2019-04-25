@@ -35,6 +35,8 @@ module.exports.charge = async (event, context, callback) =>
   });
 };
 
+
+
 module.exports.chargeTest = async (event, context, callback) => 
 {
   const locationId = process.env.LOCATION_ID;
